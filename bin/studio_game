@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+require_relative '../lib/studio_game/game'
+require_relative '../lib/studio_game/clumsy_player'
+game1 = StudioGame::Game.new("KunckleHeads")
+
+default_player_file = File.join(File.dirname(__FILE__), 'players.csv')
+game1.load_players(ARGV.shift || default_player_file)
+
+#game1.add_player(ClumsyPlayer.new("arun",2,2)  )
+
+loop do
+  puts "how many rounds (type quit to exit)"
+  answer = gets.chomp.downcase
+  case  answer
+    when /^\d+$/
+      game1.play(Integer(answer))
+    when 'quit','exit'
+      game1.game_stats
+      break
+    else
+      puts "enter number or quit"
+  end
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
